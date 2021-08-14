@@ -12,7 +12,7 @@ const DashBoardRoutes = () => {
 		<>
 			<Navbar />
 
-			<>
+			<div className='container mt-3'>
 				<Switch>
 					<Route exact path='/marvel' component={MarvelScreen} />
 
@@ -22,7 +22,7 @@ const DashBoardRoutes = () => {
 
 					<Redirect to='/marvel' />
 				</Switch>
-			</>
+			</div>
 		</>
 	);
 };
