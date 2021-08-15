@@ -6,6 +6,7 @@ import { Navbar } from '../components/ui/Navbar';
 import MarvelScreen from '../components/marvel/MarvelScreen';
 import DCScreen from '../components/dc/DCScreen';
 import HeroScreen from '../components/heroes/HeroScreen';
+import NotFoundScreen from '../components/ui/NotFoundScreen';
 
 const DashBoardRoutes = () => {
 	return (
@@ -18,9 +19,11 @@ const DashBoardRoutes = () => {
 
 					<Route exact path='/dc' component={DCScreen} />
 
-					<Route exact path='/marvel/:heroId' component={HeroScreen} />
+					<Route exact path='/hero/:heroId' component={HeroScreen} />
 
-					<Redirect to='/marvel' />
+					<Route exact path='/heronotfound' component={NotFoundScreen} />
+
+					<Redirect to='/heronotfound' />
 				</Switch>
 			</div>
 		</>
