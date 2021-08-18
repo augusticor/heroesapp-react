@@ -1,4 +1,4 @@
-export const assetsBaseUrl = 'https://raw.githubusercontent.com/Carlos-Angel/heroes-app/main/public/assets/heroes';
+export const assetsBaseUrl = 'https://raw.githubusercontent.com/Carlos-Angel/heroes-app/main/src/assets/heroes';
 
 export const heroes = [
 	{
