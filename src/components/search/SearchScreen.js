@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import HeroeCard from '../heroes/HeroeCard';
 
 import { useForm } from '../../hooks/useForm';
+import { useLocation } from 'react-router-dom';
+
 import { getHeroByName } from '../../selectors/getHeroByName';
 
-const SearchScreen = () => {
-	const [{ superhero }, handleInputChange, resetForm] = useForm({ superhero: '' });
+import { parse } from 'query-string';
 
-	let foundHeroes = [];
+const SearchScreen = ({ history }) => {
+	const { search } = useLocation();
+	const { hero: queryHero = '' } = parse(search);
+
+	const [{ superhero }, handleInputChange] = useForm({ superhero: queryHero });
+
+	const foundHeroes = useMemo(() => getHeroByName(queryHero), [queryHero]);
 
 	const handleSearch = (e) => {
 		e.preventDefault();
 
-		if (superhero.length < 3) {
+		if (superhero.length < 1) {
 			return;
 		}
 
-		foundHeroes = getHeroByName(superhero);
-		console.log(foundHeroes);
-
-		resetForm();
+		history.push(`?hero=${superhero}`);
 	};
 
 	return (
@@ -33,8 +37,9 @@ const SearchScreen = () => {
 					<hr />
 					<form onSubmit={handleSearch}>
 						<div className='form-group'>
-							<label htmlFor='superhero'>Superhero name</label>
+							<label htmlFor='superhero'>Superhero name or alter ego or characters</label>
 							<input
+								autoComplete='off'
 								value={superhero}
 								onChange={handleInputChange}
 								name='superhero'
@@ -50,14 +55,19 @@ const SearchScreen = () => {
 				</div>
 
 				<div className='col-7'>
-					<h4>Results</h4>
+					<h4>Results {foundHeroes.length}</h4>
 					<hr />
+
+					{queryHero === '' && <div className='alert alert-info'>Search a hero !</div>}
+
+					{queryHero !== '' && foundHeroes.length === 0 && <div className='alert alert-warning'>No heroes found :</div>}
+
 					{foundHeroes.map((hero) => {
 						return (
-							<>
-								<HeroeCard key={hero.id} {...hero} />
+							<div key={hero.id} className='animate__animated animate__fadeIn'>
+								<HeroeCard {...hero} />
 								<hr />
-							</>
+							</div>
 						);
 					})}
 				</div>

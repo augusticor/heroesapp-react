@@ -48,7 +48,7 @@ const HeroScreen = ({ history }) => {
 				</section>
 
 				<button className='btn btn-info mt-5' onClick={handleReturnBackToHeroes}>
-					Return to heroes
+					Go back
 				</button>
 			</div>
 		</div>
