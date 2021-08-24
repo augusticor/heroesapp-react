@@ -13,8 +13,10 @@ const LoginScreen = ({ history }) => {
 
 	const handleLogin = (e) => {
 		e.preventDefault();
-
 		// history.push('/dc');
+
+		const lastLocation = localStorage.getItem('lastLocation') || '/';
+
 		const loginAction = {
 			type: types.login,
 			payload: {
@@ -24,7 +26,7 @@ const LoginScreen = ({ history }) => {
 
 		dispatch(loginAction);
 
-		history.replace('/dc');
+		history.replace(lastLocation);
 	};
 
 	return (

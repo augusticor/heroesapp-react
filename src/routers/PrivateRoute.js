@@ -4,6 +4,14 @@ import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router-dom';
 
 const PrivateRoute = ({ isAuthenticated, component: ComponentToRender, ...rest }) => {
+	const lastPath = rest.location;
+
+	if (lastPath.search !== '' && lastPath.pathname === '/search') {
+		localStorage.setItem('lastLocation', lastPath.pathname + lastPath.search);
+	} else {
+		localStorage.setItem('lastLocation', lastPath.pathname);
+	}
+
 	return (
 		<Route
 			{...rest}
