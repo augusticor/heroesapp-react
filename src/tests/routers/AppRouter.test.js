@@ -38,8 +38,8 @@ describe('Tests on <AppRouter/> component', () => {
 			</AuthContext.Provider>
 		);
 
+		expect(wrapper).toMatchSnapshot();
 		expect(wrapper.find('nav').exists()).toBeTruthy();
 		expect(wrapper.find('nav span b').text()).toBe(contextProviderValue.user.nickname);
-		expect(wrapper.find('h1').text()).toBe('Marvel SuperHeroes');
 	});
 });

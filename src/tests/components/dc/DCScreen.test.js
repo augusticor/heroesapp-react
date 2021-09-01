@@ -1,5 +1,6 @@
-const { shallow } = require('enzyme');
-const { default: DCScreen } = require('../../../components/dc/DCScreen');
+import { shallow } from 'enzyme';
+
+import DCScreen from '../../../components/dc/DCScreen';
 
 describe('Tests on <DCScreen /> component', () => {
 	const wrapper = shallow(<DCScreen />);
