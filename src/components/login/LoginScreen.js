@@ -34,9 +34,8 @@ const LoginScreen = ({ history }) => {
 			<h1>Login</h1>
 			<hr />
 
-			<label htmlFor='inputnickname'>Your superhero nickname</label>
-
 			<form className='formy' onSubmit={handleLogin}>
+				<label htmlFor='inputnickname'>Your superhero nickname</label>
 				<input
 					required='required'
 					value={nickname}
